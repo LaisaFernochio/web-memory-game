@@ -4,6 +4,7 @@ function BoardTest() {
 
     try {
       test_helpers.call_test_case("default size", this.default_size);
+      test_helpers.call_test_case("cards pairs",  this.cards_pairs);
 
       console.info("Everything Ok!");
     } catch(e) {
@@ -25,6 +26,26 @@ function BoardTest() {
     for(row = 0; row < 2; row++)
       for(col = 0; col < 3; col++)
         test_helpers.check(b.places[row][col] instanceof Card, "Should had put a card into this place!");
+  }
+
+  this.cards_pairs = function() {
+    var cartas = [
+      new Card("1.img"),
+      new Card("2.img"),
+      new Card("3.img")
+    ];
+    var b = new Board(cartas);
+
+    cartas.forEach(carta => {
+      var founds = 0;
+
+      for(row = 0; row < 2; row++)
+        for(col = 0; col < 3; col++)
+          if(b.places[row][col] == carta)
+            ++founds
+
+      test_helpers.check(founds == 2, "Should have one pair of each card!");
+    });
   }
 }
 
