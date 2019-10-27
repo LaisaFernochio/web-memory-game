@@ -5,9 +5,9 @@ function TestHelpers() {
     test_case_func();
   }
 
-  this.check = function(condition_result, msg) {
-    if(condition_result)
-      throw msg;
+  this.check = function(is_ok, error_msg) {
+    if(!is_ok)
+      throw error_msg;
   }
 }
 

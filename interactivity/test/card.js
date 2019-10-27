@@ -15,24 +15,24 @@ function CardTest() {
   }
 
   this.default_properties = function() {
-    c = new Card('img.ext');
+    var c = new Card('img.ext');
 
-    test_helpers.check(c.img != 'img.ext', "Image not initialized correctly!");
-    test_helpers.check(c.turned,           "Card should not be turned!");
+    test_helpers.check(c.img === 'img.ext', "Image not initialized correctly!");
+    test_helpers.check(!c.turned,           "Card should not be turned!");
   }
 
   this.specific_properties = function() {
-    c = new Card('img.ext', true);
+    var c = new Card('img.ext', true);
 
-    test_helpers.check(c.img != 'img.ext', "Image not initialized correctly!");
-    test_helpers.check(!c.turned,          "Card should be turned!");
+    test_helpers.check(c.img === 'img.ext', "Image not initialized correctly!");
+    test_helpers.check(c.turned,            "Card should be turned!");
   }
 
   this.turn = function() {
-    c = new Card('img.ext', false);
+    var c = new Card('img.ext', false);
     c.turn();
 
-    test_helpers.check(!c.turned, "Card should be turned!");
+    test_helpers.check(c.turned, "Card should be turned!");
   }
 }
 
