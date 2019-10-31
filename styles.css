@@ -1,13 +1,34 @@
+body {
+  min-height: 100vh;
+  background: radial-gradient(#520468, #000000);
+}
+
+h1 {
+  text-align: center;
+  font-size: 7vw;
+  font-family: 'Creepster', cursive;
+  text-shadow: -1px 1px 0 #000, 
+               1px 1px 0 #000, 
+               1px -1px 0 #000,
+               -1px -1px 0 #000; 
+  color: #39ff14;
+  
+}
+
 table {
-  width: 260px;
-  height: 260px;
+  margin: 0 auto;
+  width: 320px;
+  height: 320px;
 }
 
 table tr td div.card {
   position: relative;
-  border: thin solid #ebb042;
+  border: thin solid #ffffff;
+  border-radius: 5px;
   width: 100%;
   height: 100%;
+  background: radial-gradient(#ffffff, #a9a9a9);
+  box-shadow: 3px 3px 3px #000000;
 }
 
 table tr td div.card img {
@@ -15,3 +36,18 @@ table tr td div.card img {
   width: 100%;
   height: 100%;
 } 
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:#000000;
+  opacity: 0.5;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+  color: white;
+  text-align: center;
+  padding: 12px 10px;
+  margin-top: 80px;
+}
