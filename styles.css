@@ -61,12 +61,13 @@ footer {
   margin-top: 80px;
   text-align: center;
 }
+
 .text {
   font-family: 'Nosifer', cursive;
   text-align: center;
   color: #000000;
-  
 }
+
 a.two:link {color:#ff0000;}
 a.two:visited {color:#fa0303;}
 a.two:hover {color:#15ff00;}
