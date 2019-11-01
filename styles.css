@@ -12,8 +12,18 @@ h1 {
                1px -1px 0 #000,
                -1px -1px 0 #000; 
   color: #39ff14;
-  
 }
+
+a.one {
+  text-align: start;
+  font-size: 2vw;
+  font-family: 'Creepster', cursive;
+}
+
+a.one:link {color:#ffffff;}
+a.one:visited {color:#39ff14;}
+a.one:hover {color:#ff5100;}
+a.one:link {text-decoration: none;}
 
 table {
   margin: 0 auto;
@@ -47,7 +57,21 @@ footer {
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
   color: white;
-  text-align: center;
   padding: 12px 10px;
   margin-top: 80px;
+  text-align: center;
 }
+.text {
+  font-family: 'Nosifer', cursive;
+  text-align: center;
+  color: #000000;
+  
+}
+a.two:link {color:#ff0000;}
+a.two:visited {color:#fa0303;}
+a.two:hover {color:#15ff00;}
+a.two:link {text-decoration: none;}
+
+
+
+
