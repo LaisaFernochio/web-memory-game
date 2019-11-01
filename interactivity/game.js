@@ -1,5 +1,6 @@
 function Game() {
   this.last_turned_card = null;
+  this.in_analysis      = false;
   this.board = new Board(
     [
       new Pair('images/card-front/1.svg'),
@@ -18,25 +19,35 @@ function Game() {
 
     for(let card = 0; card < cards.length; card++) {
       cards[card].addEventListener('click', function() {
-        var chosen_card = that.board.places[Math.floor(card / 3)][card % 3];
+        if(!that.in_analysis) {
+          var chosen_card = that.board.places[Math.floor(card / 3)][card % 3];
 
-        if(!chosen_card.turned) {
-          chosen_card.turn();
+          if(!chosen_card.turned) {
+            chosen_card.turn();
 
-          if(that.last_turned_card === null)
-            that.last_turned_card = chosen_card;
-          else {
-            if(that.pair_match(chosen_card)) {
+            if(that.last_turned_card === null) {
+              that.last_turned_card = chosen_card;
+            } else if(that.pair_match(chosen_card)) {
               console.info('Match!');
+              that.last_turned_card = null;
             } else {
-              that.last_turned_card.turn();
-              chosen_card.turn();
+              that.in_analysis = true;
+
+              setTimeout(function() {
+                  chosen_card.turn();
+                  that.last_turned_card.turn();
+                  that.last_turned_card = null;
+
+                  that.update_screen();
+
+                  that.in_analysis = false;
+                },
+                1000
+              );
             }
 
-            that.last_turned_card = null;
+            that.update_screen();
           }
-
-          that.update_screen();
         }
       });
     }

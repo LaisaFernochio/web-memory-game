@@ -4,7 +4,6 @@ function GameTest() {
 
     try {
       test_helpers.call_test_case("default properties", this.default_properties);
-      test_helpers.call_test_case("turned cards",       this.default_turned_cards);
       test_helpers.call_test_case("pair_match",         this.pair_match);
 
       console.info("Everything Ok!");
@@ -16,13 +15,9 @@ function GameTest() {
   this.default_properties = function() {
     var g = new Game();
 
-    test_helpers.check(g.board.pairs.length == 3, "Board should have a card set with 3 pairs!");
-  }
-
-  this.default_turned_cards = function() {
-    var g = new Game();
-
-    test_helpers.check(g.last_turned_card === null, "Cards should not start turned!");
+    test_helpers.check(g.board.pairs.length == 3,      "Board should have a card set with 3 pairs!");
+    test_helpers.check(g.last_turned_card   === null,  "Cards should not start turned!");
+    test_helpers.check(g.in_analysis        === false, "Game should not start in analysis state!");
   }
 
   this.pair_match = function() {
