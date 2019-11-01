@@ -1,11 +1,11 @@
-function Board(cards, row_count = 2, col_count = 3) {
-  this.cards     = cards;
+function Board(pairs, row_count = 2, col_count = 3) {
+  this.pairs     = pairs;
   this.row_count = row_count;
   this.col_count = col_count;
   this.places    = [];
 
   this.distribute_cards = function() {
-    var cards_usage = new CardsUsage(this.cards);
+    var cards_usage = new CardsUsage(this.pairs);
 
     for(row = 0; row < row_count; row++){ 
       var row_places = [];
@@ -17,30 +17,23 @@ function Board(cards, row_count = 2, col_count = 3) {
     }
   }
 
-  function CardsUsage(cards_for_use) {
+  function CardsUsage(pairs_of_cards) {
     this.cards_use = [];
 
-    this.init = function(cards_for_use) {
-      for(card_use = 0; card_use < cards_for_use.length; card_use++)
-        this.cards_use[card_use] = {
-          'card': cards_for_use[card_use],
-          'uses': 0
-        }
+    this.init = function(pairs_of_cards) {
+      pairs_of_cards.forEach(pair => {
+        this.cards_use = this.cards_use.concat(pair.cards);
+      });
     }
 
     this.next_available_card = function() {
-      var card_position;
-
-      do
-        card_position = Math.floor(Math.random() * cards_for_use.length);
-      while(this.cards_use[card_position]['uses'] == 2);
-
-      ++this.cards_use[card_position]['uses'];
-
-      return this.cards_use[card_position]['card'];
+      return this.cards_use.splice(
+        Math.random() * this.cards_use.length,
+        1
+      )[0];
     }
 
-    this.init(cards_for_use);
+    this.init(pairs_of_cards);
   }
 
   this.distribute_cards();
