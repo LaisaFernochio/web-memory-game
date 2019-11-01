@@ -9,12 +9,31 @@ function Game() {
 
   this.setup_card_click = function() {
     var cards = document.getElementsByClassName("card");
-    var board = this.board;
+    var that = this;
 
     for(let card = 0; card < cards.length; card++) {
       cards[card].addEventListener('click', function() {
-        board.places[Math.floor(card / 3)][card % 3].turn();
+        that.board.places[Math.floor(card / 3)][card % 3].turn();
+        that.update_screen();
       });
+    }
+  }
+
+  this.update_screen = function() {
+    this.update_board();
+  }
+
+  this.update_board = function() {
+    var cards = document.getElementsByClassName("card");
+
+    for(var card = 0; card < cards.length; card++) {
+      var on_board_card = this.board.places[Math.floor(card / 3)][card % 3];
+      var card_img      = cards[card].getElementsByTagName('img')[0];
+
+      if(on_board_card.turned)
+        card_img.src = on_board_card.img;
+      else
+        card_img.src = 'images/card-back.svg';
     }
   }
 
