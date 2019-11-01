@@ -14,8 +14,7 @@ function GameTest() {
   this.default_properties = function() {
     var g = new Game();
 
-    test_helpers.check(g.cards.length == 3,       "Should have a card set with 3 cards!");
-    test_helpers.check(g.board.cards  == g.cards, "Should have a board!");
+    test_helpers.check(g.board.pairs.length == 3, "Board should have a card set with 3 pairs!");
   }
 }
 
