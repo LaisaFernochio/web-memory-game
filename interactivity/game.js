@@ -20,16 +20,18 @@ function Game() {
       cards[card].addEventListener('click', function() {
         var chosen_card = that.board.places[Math.floor(card / 3)][card % 3];
 
-        chosen_card.turn();
+        if(!chosen_card.turned) {
+          chosen_card.turn();
 
-        if(that.last_turned_card === null)
-          that.last_turned_card = chosen_card;
-        else if(that.pair_match(chosen_card))
-          console.info('Match!');
-        else
-          that.last_turned_card = null;
+          if(that.last_turned_card === null)
+            that.last_turned_card = chosen_card;
+          else if(that.pair_match(chosen_card))
+            console.info('Match!');
+          else
+            that.last_turned_card = null;
 
-        that.update_screen();
+          that.update_screen();
+        }
       });
     }
   }
