@@ -1,4 +1,5 @@
 function Game() {
+  this.last_turned_card = null;
   this.board = new Board(
     [
       new Pair('images/card-front/1.svg'),
@@ -6,6 +7,10 @@ function Game() {
       new Pair('images/card-front/3.svg')
     ]
   );
+
+  this.pair_match = function(card) {
+    return card.img === this.last_turned_card.img
+  }
 
   this.setup_card_click = function() {
     var cards = document.getElementsByClassName("card");
