@@ -25,10 +25,16 @@ function Game() {
 
           if(that.last_turned_card === null)
             that.last_turned_card = chosen_card;
-          else if(that.pair_match(chosen_card))
-            console.info('Match!');
-          else
+          else {
+            if(that.pair_match(chosen_card)) {
+              console.info('Match!');
+            } else {
+              that.last_turned_card.turn();
+              chosen_card.turn();
+            }
+
             that.last_turned_card = null;
+          }
 
           that.update_screen();
         }
