@@ -1,7 +1,8 @@
 function Game() {
   this.last_turned_card = null;
-  this.in_analysis      = false;
+  this.state            = "running";
   this.seconds_counter  = 0;
+  this.pairs_left       = 3;
   this.board = new Board(
     [
       new Pair('images/card-front/1.svg'),
@@ -18,8 +19,10 @@ function Game() {
     var that = this;
 
     setInterval(function() {
-        ++that.seconds_counter;
-        that.update_stopwatch();
+        if(that.state !== "finished") {
+          ++that.seconds_counter;
+          that.update_stopwatch();
+        }
       },
       1000
     );
@@ -31,7 +34,7 @@ function Game() {
 
     for(let card = 0; card < cards.length; card++) {
       cards[card].addEventListener('click', function() {
-        if(!that.in_analysis) {
+        if(that.state === "running") {
           var chosen_card = that.board.places[Math.floor(card / 3)][card % 3];
 
           if(!chosen_card.turned) {
@@ -40,10 +43,13 @@ function Game() {
             if(that.last_turned_card === null) {
               that.last_turned_card = chosen_card;
             } else if(that.pair_match(chosen_card)) {
-              console.info('Match!');
+              --that.pairs_left;
               that.last_turned_card = null;
+
+              if(that.pairs_left === 0)
+                that.state = "finished";
             } else {
-              that.in_analysis = true;
+              that.state = "in_analysis";
 
               setTimeout(function() {
                   chosen_card.turn();
@@ -52,7 +58,7 @@ function Game() {
 
                   that.update_board();
 
-                  that.in_analysis = false;
+                  that.state = "running";
                 },
                 1000
               );

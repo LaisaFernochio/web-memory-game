@@ -16,10 +16,11 @@ function GameTest() {
   this.default_properties = function() {
     var g = new Game();
 
-    test_helpers.check(g.board.pairs.length == 3,      "Board should have a card set with three pairs!");
-    test_helpers.check(g.last_turned_card   === null,  "Cards should not start turned!");
-    test_helpers.check(g.in_analysis        === false, "Game should not start in analysis state!");
-    test_helpers.check(g.seconds_counter    == 0,      "Seconds counter should not start diferent from zero!");
+    test_helpers.check(g.board.pairs.length === 3,         "Board should have a card set with three pairs!");
+    test_helpers.check(g.last_turned_card   === null,      "Cards should not start turned!");
+    test_helpers.check(g.seconds_counter    === 0,         "Seconds counter should not start different from zero!");
+    test_helpers.check(g.pairs_left         === 3,         "Should not have found any pair yet!");
+    test_helpers.check(g.state              === "running", "Should start running!");
   }
 
   this.pair_match = function() {
