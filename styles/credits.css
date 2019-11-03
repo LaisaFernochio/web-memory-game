@@ -1,0 +1,10 @@
+.text {
+  font-family: 'Nosifer', cursive;
+  text-align: center;
+  color: #000000;
+}
+
+a.two:link    {color:#ff0000;}
+a.two:visited {color:#fa0303;}
+a.two:hover   {color:#15ff00;}
+a.two:link    {text-decoration: none;}

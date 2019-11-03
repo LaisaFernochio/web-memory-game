@@ -1,0 +1,15 @@
+body {
+  min-height: 100vh;
+  background: radial-gradient(#520468, #000000);
+}
+
+h1 {
+  text-align: center;
+  font-size: 7vw;
+  font-family: 'Creepster', cursive;
+  text-shadow: -1px  1px 0 #000, 
+                1px  1px 0 #000, 
+                1px -1px 0 #000,
+               -1px -1px 0 #000; 
+  color: #39ff14;
+}

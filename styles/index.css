@@ -1,34 +1,18 @@
-body {
-  min-height: 100vh;
-  background: radial-gradient(#520468, #000000);
-}
-
-h1 {
-  text-align: center;
-  font-size: 7vw;
-  font-family: 'Creepster', cursive;
-  text-shadow: -1px 1px 0 #000, 
-               1px 1px 0 #000, 
-               1px -1px 0 #000,
-               -1px -1px 0 #000; 
-  color: #39ff14;
-}
-
 a.one {
   text-align: start;
   font-size: 2vw;
   font-family: 'Creepster', cursive;
 }
 
-a.one:link {color:#ffffff;}
+a.one:link    {color:#ffffff;}
 a.one:visited {color:#39ff14;}
-a.one:hover {color:#ff5100;}
-a.one:link {text-decoration: none;}
+a.one:hover   {color:#ff5100;}
+a.one:link    {text-decoration: none;}
 
 table {
   margin: 0 auto;
   width: 320px;
-  height: 320px;
+  height: 380px;
 }
 
 table tr td div.card {
@@ -47,6 +31,17 @@ table tr td div.card img {
   height: 100%;
 } 
 
+table tr:last-child {
+  height: 15%;
+}
+
+table tr:last-child td div.stopwatch {
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Creepster', cursive;
+}
+
 footer {
   position: fixed;
   left: 0;
@@ -61,18 +56,3 @@ footer {
   margin-top: 80px;
   text-align: center;
 }
-
-.text {
-  font-family: 'Nosifer', cursive;
-  text-align: center;
-  color: #000000;
-}
-
-a.two:link {color:#ff0000;}
-a.two:visited {color:#fa0303;}
-a.two:hover {color:#15ff00;}
-a.two:link {text-decoration: none;}
-
-
-
-

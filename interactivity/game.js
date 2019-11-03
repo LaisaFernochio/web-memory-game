@@ -17,7 +17,12 @@ function Game() {
   this.start_stopwatch = function() {
     var that = this;
 
-    setInterval(function() { ++that.seconds_counter }, 1000 );
+    setInterval(function() {
+        ++that.seconds_counter;
+        that.update_stopwatch();
+      },
+      1000
+    );
   }
 
   this.setup_card_click = function() {
@@ -45,7 +50,7 @@ function Game() {
                   that.last_turned_card.turn();
                   that.last_turned_card = null;
 
-                  that.update_screen();
+                  that.update_board();
 
                   that.in_analysis = false;
                 },
@@ -53,15 +58,11 @@ function Game() {
               );
             }
 
-            that.update_screen();
+            that.update_board();
           }
         }
       });
     }
-  }
-
-  this.update_screen = function() {
-    this.update_board();
   }
 
   this.update_board = function() {
@@ -76,6 +77,14 @@ function Game() {
       else
         card_img.src = 'images/card-back.svg';
     }
+  }
+
+  this.update_stopwatch = function() {
+    var minutes   = parseInt(this.seconds_counter / 60);
+    var seconds   = parseInt(this.seconds_counter % 60);
+    var stopwatch = document.getElementsByClassName("stopwatch")[0];
+
+    stopwatch.innerHTML = `${minutes} minutos e ${seconds} segundos`;
   }
 
   this.setup_card_click();
