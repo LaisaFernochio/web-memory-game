@@ -5,8 +5,9 @@ function GameTest() {
     try {
       test_helpers.call_test_case("default properties", this.default_properties);
       test_helpers.call_test_case("pair_match",         this.pair_match);
+      test_helpers.call_test_case("stopwatch",          this.stopwatch);
 
-      console.info("Everything Ok!");
+      console.info("So far, everything Ok (stopwatch being verified asynchronously)!");
     } catch(e) {
       console.error(e);
     }
@@ -15,9 +16,10 @@ function GameTest() {
   this.default_properties = function() {
     var g = new Game();
 
-    test_helpers.check(g.board.pairs.length == 3,      "Board should have a card set with 3 pairs!");
+    test_helpers.check(g.board.pairs.length == 3,      "Board should have a card set with three pairs!");
     test_helpers.check(g.last_turned_card   === null,  "Cards should not start turned!");
     test_helpers.check(g.in_analysis        === false, "Game should not start in analysis state!");
+    test_helpers.check(g.seconds_counter    == 0,      "Seconds counter should not start diferent from zero!");
   }
 
   this.pair_match = function() {
@@ -26,6 +28,22 @@ function GameTest() {
 
     test_helpers.check(g.pair_match(new Card('1.svg')),  "Should be a pair!");
     test_helpers.check(!g.pair_match(new Card('2.svg')), "Should not be a pair!");
+  }
+
+  this.stopwatch = function() {
+    var g = new Game();
+
+    setTimeout(function() {
+        try {
+          test_helpers.check(g.seconds_counter == 3, "Stopwatch should had incremented the seconds counter by one!");
+
+          console.info("stopwatch Ok!");
+        } catch(e) {
+          console.error(e);
+        }
+      },
+      3000
+    );
   }
 }
 

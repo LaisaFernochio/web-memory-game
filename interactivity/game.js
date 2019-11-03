@@ -1,6 +1,7 @@
 function Game() {
   this.last_turned_card = null;
   this.in_analysis      = false;
+  this.seconds_counter  = 0;
   this.board = new Board(
     [
       new Pair('images/card-front/1.svg'),
@@ -11,6 +12,12 @@ function Game() {
 
   this.pair_match = function(card) {
     return card.img === this.last_turned_card.img
+  }
+
+  this.start_stopwatch = function() {
+    var that = this;
+
+    setInterval(function() { ++that.seconds_counter }, 1000 );
   }
 
   this.setup_card_click = function() {
@@ -72,4 +79,5 @@ function Game() {
   }
 
   this.setup_card_click();
+  this.start_stopwatch();
 }
