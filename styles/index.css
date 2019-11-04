@@ -32,9 +32,10 @@ table tr td div.card img {
 } 
 
 table tr:last-child {
-  height: 15%;
+  height: 20%;
 }
 
+table tr:last-child td div.state,
 table tr:last-child td div.stopwatch {
   width: 100%;
   text-align: center;

@@ -54,20 +54,39 @@ function Game() {
               setTimeout(function() {
                   chosen_card.turn();
                   that.last_turned_card.turn();
+
                   that.last_turned_card = null;
+                  that.state            = "running";
 
                   that.update_board();
-
-                  that.state = "running";
+                  that.update_state();
                 },
                 1000
               );
             }
 
             that.update_board();
+            that.update_state();
           }
         }
       });
+    }
+  }
+
+  this.update_screen = function() {
+    this.update_board();
+    this.update_stopwatch();
+    this.update_state();
+  }
+
+  this.update_state = function() {
+    var state = document.getElementsByClassName("state")[0];
+
+    switch(this.state) {
+      case "running":     state.innerHTML = "Em Andamento"; break;
+      case "in_analysis": state.innerHTML = "Analisando";   break;
+      case "finished":    state.innerHTML = "Fim de Jogo";  break;
+      default:            state.innerHTML = "Indefinido";
     }
   }
 
@@ -95,4 +114,5 @@ function Game() {
 
   this.setup_card_click();
   this.start_stopwatch();
+  this.update_screen();
 }
